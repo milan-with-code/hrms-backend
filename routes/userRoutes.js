@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
       email,
       password: hashedPassword,
       phone,
-      role: "Pending",
+      role: "pending",
     });
 
     await user.save();
@@ -63,7 +63,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    if (user.role === "Employee" && !user.company) {
+    if (user.role === "employee" && !user.company) {
       return res.status(403).json({
         message: "You must join a company before logging in",
       });
@@ -96,7 +96,7 @@ router.post("/update-role", authenticateToken, async (req, res) => {
     const { role } = req.body;
     const userId = req.userId;
 
-    if (!role || !["Employee", "Manager"].includes(role)) {
+    if (!role || !["employee", "manager"].includes(role)) {
       return res.status(400).json({ message: "Invalid role" });
     }
 

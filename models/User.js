@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     required: true,
-    enum: ["Employee", "Manager", "Pending"],
+    enum: ["employee", "manager", "pending"],
   },
   company: { type: mongoose.Schema.Types.ObjectId, ref: "Company" },
 });
